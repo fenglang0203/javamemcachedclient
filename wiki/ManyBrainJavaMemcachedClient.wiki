@@ -1,0 +1,18 @@
+#summary ManyBrain Java Memcached Client
+
+= Introduction =
+
+All user facing calls are in MemCacheClient.java
+
+Use is pretty straightforward, create the client with the servers, ports, and weights.
+
+String servers = new String[] { "server1.com:3993", "server2.com: 8833" };
+int weights = new int[] { 3, 6 };
+MemCacheClient mcc = new MemCacheClient(servers, weights };
+
+Then call set/get.
+
+mcc.set("TheKey", "The value is right here dude");
+mcc.set("TheBigObject", map);
+
+String v = mcc.get("TheKey");
