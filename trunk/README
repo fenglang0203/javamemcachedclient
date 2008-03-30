@@ -1,0 +1,23 @@
+ManyBrain Java Memcached Client (BETA)
+
+I wrote this client because the existing clients I found did not give the performance nor scalability I needed for a specific project. That being said, this client is in BETA and should be treated as such.
+
+It uses blocking I/O and is very happy to be highly multithreaded. It is not yet feature complete but hopefully will evolve to be.
+
+It is LGPL licensed (i.e. feel free to use it commercially and non-commercially). 
+
+If you have bug fixes, I'd be happy to incorporate them. I'd also be very interested in performance improvements - however, from here the most obvious win will be to implement a custom serialization mechanism (it does that for strings now) for all Objects. I haven't searched very hard on the net on existing alternatives which might be a good (or great) starting point.
+
+Note the "policy" package is a semi-heartened attempt at allowing anyone to extend this lib as needed. 
+
+The multiget implementation is tuned for actual remote memcached servers and will suffer in performance on a loopback benchmark.
+
+Paul Tyma
+paul.tyma@gmail.com
+
+Description:
+ManyBrain Java Memcached client built for speed and high-scalability. Takes significant advantage of multi-core systems. Peak performance on loopback network at about number_of_threads = number_of_cores+2 (highly approximate). Throughput loss is gradual tested up to 500 threads. For real networks (with notably more latency than loopback) a few thousand threads should perform well (of course use, -Xss96k or so)
+
+Very high performance for string and small payloads because of streamlined code. Large payloads (i.e., big hashmaps) still benefit, but less so as the Java serialization mechanism is a serious bottleneck.
+
+This API is BETA and is not feature complete (yet). Notably, CAS is not supported.
