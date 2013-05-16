@@ -296,6 +296,10 @@ public class MemCacheClient {
     flag.setString();
     return mccg.writeObject(PREPEND, getChars(key), value.getBytes(), timeout, flag);
   }
+  
+  public boolean delete(String key) {
+    return mccg.delete(getChars(key));
+  }
 
   public boolean setInt(String key, int x) {
     return setInt(getChars(key), x);
